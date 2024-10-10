@@ -16,3 +16,7 @@ bunx --bun shadcn@2.1.0 init
 - Choose *style* New York
 - Choose *base color* Neutral
 - Choose *CSS variable* Yes
+### Add Button From Shadcn into Project
+```
+bunx --bun shadcn@2.1.0 add button
+```
