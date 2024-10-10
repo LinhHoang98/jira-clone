@@ -20,3 +20,8 @@ bunx --bun shadcn@2.1.0 init
 ```
 bunx --bun shadcn@2.1.0 add button
 ```
+### Add Multi-Component from Shadcn
+```
+bunx --bun shadcn@2.1.9 add
+```
+- Choose component want to add
