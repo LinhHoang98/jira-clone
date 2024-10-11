@@ -9,23 +9,22 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import Link from "next/link";
-
-const formSchema = z.object({
-    email: z.string().trim().email(),
-    password: z.string().min(8, "Minimum 8 characters")
-});
+import {loginSchema} from "@/features/auth/schemas";
+import {useLogin} from "@/features/auth/api/use-login";
 
 export const SignInCard = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const { mutate } = useLogin()
+
+    const form = useForm<z.infer<typeof loginSchema>>({
+        resolver: zodResolver(loginSchema),
         defaultValues: {
             email: "",
             password: ""
         }
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log({values});
+    const onSubmit = (values: z.infer<typeof loginSchema>) => {
+        mutate({json: values});
     }
 
     return (
@@ -50,7 +49,7 @@ export const SignInCard = () => {
                                         placeholder="Enter email address"
                                     />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}/>
 
@@ -63,7 +62,7 @@ export const SignInCard = () => {
                                         placeholder="Enter password"
                                     />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}/>
                         <Button disabled={false} size="lg" className="w-full">Login</Button>
@@ -85,7 +84,7 @@ export const SignInCard = () => {
                 </Button>
             </CardContent>
             <div className="px-7">
-                <DottedSeparator />
+                <DottedSeparator/>
             </div>
             <CardContent className="p-7 flex items-center justify-center">
                 <p>
