@@ -26,6 +26,8 @@ export const UserButton = () => {
 
     const avatarFallback = name ? name.charAt(0).toUpperCase() : email.charAt(0).toUpperCase() ?? "U";
 
+    // @ts-ignore
+    // @ts-ignore
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="outline-none relative">
