@@ -1,3 +1,5 @@
+"use client"
+
 import {z} from "zod";
 import {FcGoogle} from "react-icons/fc";
 import {FaGithub} from "react-icons/fa";
@@ -13,7 +15,7 @@ import {loginSchema} from "@/features/auth/schemas";
 import {useLogin} from "@/features/auth/api/use-login";
 
 export const SignInCard = () => {
-    const { mutate } = useLogin()
+    const { mutate, isPending } = useLogin()
 
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -65,7 +67,7 @@ export const SignInCard = () => {
                                 <FormMessage/>
                             </FormItem>
                         )}/>
-                        <Button disabled={false} size="lg" className="w-full">Login</Button>
+                        <Button disabled={isPending} size="lg" className="w-full">Login</Button>
                     </form>
                 </Form>
             </CardContent>
